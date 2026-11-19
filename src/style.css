@@ -1,0 +1,45 @@
+:root {
+    --primary-color: #4B9CD3;
+    --secondary-color: #000080;
+}
+
+body {
+    margin: 0;
+}
+
+h1, h2, h3 {
+    font-family: serif;
+    font-weight: bold;
+}
+
+h4, h5, h6 {
+    font-family: serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+p, a {
+    font-family: sans-serif;
+    margin-x: 0;
+    margin-y: 5px;
+    color: black;
+}
+
+main {
+    width: 75%;
+    margin-left: 12.5%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+nav {
+    display: flex;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
+    text-align: center;
+    padding: 5px;
+}
+
+nav > a {
+    display: flex-block;
+}
+

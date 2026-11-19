@@ -1,30 +1,40 @@
 <?php
-
-$host = getenv('MARIADB_HOST');
-$user = getenv('MARIADB_USER');
-$password = getenv('MARIADB_PASSWORD');
-$database = getenv('MARIADB_DATABASE');
-
-$dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
-
-try {
-    $pdo = new PDO($dsn, $user, $password, [
-        PDO::ATTR_ERRMODE   =>  PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE    =>  PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES  =>  false,
-    ]);
-    echo "Connected to database.";
-} catch (PDOException $e) {
-    error_log($e->getMessage());
-    http_response_code(500);
-    exit("Failed to connect to database.");
-}
-
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'lax'
+]);
+session_start();
 ?>
 
 <html>
-  <head></head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" description="" />
+    <meta name="description" description="Bullard Holdings, LLC is a family-owned real estate business in Duplin County, North Carolina." />
+    <title>Bullard Holdings, LLC</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
-    <p>This is a simple test of an apache setup.</p>
+    <header>
+    </header>
+    <main>
+      <nav>
+        <a href="/"><img src="favicon.svg"></img></a>
+          <?php
+          require_once __DIR__ . '/database.php';
+          renderPageLinks($pdo);
+          ?>
+      </nav>
+      <aside class="sidebar"></aside>
+      <section class="content">
+        <?php
+
+        ?>
+      </section>
+    </main>
+    <footer></footer>
   </body>
 </html>

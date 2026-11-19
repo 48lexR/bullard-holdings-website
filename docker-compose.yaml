@@ -7,6 +7,8 @@ services:
         depends_on:
             - database
         restart: always
+        volumes:
+          - ./src/:/var/www/html/:ro,z
 
     database:
         image: mariadb
@@ -15,6 +17,7 @@ services:
         restart: always
         volumes:
             - mariadb_data:/var/lib/mysql
+            - ./init:/docker-entrypoint-initdb.d:ro,z
 
 volumes:
     mariadb_data:
